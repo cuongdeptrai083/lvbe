@@ -17,7 +17,8 @@ public class Endpoints {
             "/api/don-hang/them-don-hang-moi",
             "/api/sach/the-loai/**",
             "/tai-khoan/thong-tin/**",
-            "/tai-khoan/thong-tin"
+            "/tai-khoan/thong-tin",
+            "/api/admin/user/**"
     };
 
     public static final String[] PUBLIC_POST_ENDPOINS = {

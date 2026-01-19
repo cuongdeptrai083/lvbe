@@ -3,7 +3,10 @@ package com.example.book_be.controller.admin;
 import com.example.book_be.bo.PhanQuyenBo;
 import com.example.book_be.bo.UserBo;
 import com.example.book_be.entity.NguoiDung;
+import com.example.book_be.entity.Quyen;
 import com.example.book_be.services.admin.AdminUserService;
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -37,6 +40,9 @@ public class UserController {
         adminUserService.phanQuyen(phanQuyenBo);
     }
 
-
-
+    @GetMapping("/{userId}/quyen")
+    public ResponseEntity<List<Quyen>> getQuyenByUserId(@PathVariable Integer userId) {
+        List<Quyen> quyenList = adminUserService.getQuyenIdsByUserId(userId);
+        return ResponseEntity.ok(quyenList);
+    }
 }

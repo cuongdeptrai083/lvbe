@@ -4,6 +4,7 @@ import com.example.book_be.bo.PhanQuyenBo;
 import com.example.book_be.bo.UserBo;
 import com.example.book_be.dao.NguoiDungRepository;
 import com.example.book_be.entity.NguoiDung;
+import com.example.book_be.entity.Quyen;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -77,5 +78,13 @@ public class AdminUserServiceImpl implements AdminUserService {
             query.setParameter("maQuyen", roleId); // ID quyền
             query.executeUpdate();
         }
+    }
+
+    @Override
+    public List<Quyen> getQuyenIdsByUserId(Integer userId) {
+        String sql = "SELECT q FROM Quyen q JOIN q.danhSachNguoiDung nd WHERE nd.maNguoiDung = :maNguoiDung";
+        return entityManager.createQuery(sql, Quyen.class)
+                .setParameter("maNguoiDung", userId)
+                .getResultList();
     }
 }
